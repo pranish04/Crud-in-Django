@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Employee Detail{% endblock %}
+
+{% block content %}
+    <h1>{{ employee.first_name }} {{ employee.last_name }}</h1>
+    <p><strong>Address:</strong> {{ employee.address }}</p>
+    <p><strong>Email:</strong> {{ employee.email }}</p>
+    <p><strong>Mobile:</strong> {{ employee.mobile }}</p>
+
+    <h2>Qualifications</h2>
+    <ul>
+        {% for qualification in employee.qualifications.all %}
+            <li>{{ qualification.name }}</li>
+        {% empty %}
+            <li>No qualifications found.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'employee_update' pk=employee.pk %}" class="btn btn-primary">Update Employee</a>
+{% endblock %}
